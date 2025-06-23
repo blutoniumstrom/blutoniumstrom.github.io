@@ -1,0 +1,44 @@
+# Site settings
+title: Jekyll Spaceship Showcase
+email: 4428752+blutoniumstrom@users.noreply.github.com
+description: >-
+  A demonstration of the jekyll-spaceship plugin features.
+baseurl: "/jekyll-spaceship-demo"
+url: "https://blutoniumstrom.github.io"
+github_username:  blutoniumstrom
+
+# Build settings
+# theme: minima # Can use a theme, or your own layout
+plugins:
+  - jekyll-feed
+  - jekyll-spaceship
+
+# Jekyll-Spaceship - All options are default values
+spaceship:
+  # To disable any of the features, simply remove them from this list
+  processors:
+    - table-of-contents
+    - mathjax
+    - plantuml
+    - mermaid
+    - polyfill
+    - media-embed
+    - emoji
+    - video-embed
+  table-of-contents:
+    # Tell Jekyll where to find your layout file
+    layout: 'default'
+    # The minimum number of headings to render a TOC
+    minimum: 2
+    # The maximum level of headings to include in the TOC
+    scope: 'h2, h3'
+    # The title to display above the TOC
+    title: 'Table of Contents'
+    # Whether to make the TOC collapsible
+    folding: true
+  mathjax:
+    # The source of the MathJax library
+    src: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+  plantuml:
+    # The PlantUML server to use
+    server: 'http://www.plantuml.com/plantuml'

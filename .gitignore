@@ -1,0 +1,37 @@
+# ignore global .gitignore
+!*
+.DS_Store
+
+# ignore merge files
+*.orig
+
+# ignore html files
+*.html
+
+# ignore any intermediate file from make processes
+bin/
+src/
+
+# ignore any local credential files
+.credentials
+cntlm/
+ssh/
+
+# ignore aider files
+*.aider*
+*.streamlit
+
+# ignore scala-metals
+*metals.sbt
+.metals/
+.bloop/
+
+# ignore VSCode files
+.vscode/
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
