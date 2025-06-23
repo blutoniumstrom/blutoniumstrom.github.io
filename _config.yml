@@ -1,4 +1,4 @@
-# Site settings
+# --- Site settings ---
 title: Jekyll Spaceship Showcase
 email: 4428752+blutoniumstrom@users.noreply.github.com
 description: >-
@@ -10,15 +10,19 @@ baseurl: "" # Set to "" for a root custom domain
 url: "https://blutoniumstrom.com"
 github_username:  blutoniumstrom
 
-# Build settings
-# theme: minima # Can use a theme, or your own layout
+# --- Theme Settings ---
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+
+# --- Build settings ---
 plugins:
   - jekyll-feed
   - jekyll-spaceship
+  - jekyll-include-cache # Required for minimal-mistakes
 
 # Jekyll-Spaceship - All options are default values
+# Note: Minimal Mistakes has its own TOC feature, but we'll use spaceship's for this demo.
 spaceship:
-  # To disable any of the features, simply remove them from this list
   processors:
     - table-of-contents
     - mathjax
@@ -29,19 +33,13 @@ spaceship:
     - emoji
     - video-embed
   table-of-contents:
-    # Tell Jekyll where to find your layout file
-    layout: 'default'
-    # The minimum number of headings to render a TOC
+    # This layout value might need to be adjusted based on the theme's structure
+    layout: 'minimal-mistakes/_layouts/default.html'
     minimum: 2
-    # The maximum level of headings to include in the TOC
     scope: 'h2, h3'
-    # The title to display above the TOC
     title: 'Table of Contents'
-    # Whether to make the TOC collapsible
     folding: true
   mathjax:
-    # The source of the MathJax library
     src: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
   plantuml:
-    # The PlantUML server to use
     server: 'http://www.plantuml.com/plantuml'
