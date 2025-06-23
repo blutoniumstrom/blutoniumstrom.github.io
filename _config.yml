@@ -3,8 +3,11 @@ title: Jekyll Spaceship Showcase
 email: 4428752+blutoniumstrom@users.noreply.github.com
 description: >-
   A demonstration of the jekyll-spaceship plugin features.
-baseurl: "/jekyll-spaceship-demo"
-url: "https://blutoniumstrom.github.io"
+# === IMPORTANT: Settings for Custom Domain ===
+# If your custom domain points directly to this repository,
+# the baseurl should be empty and the url should be your custom domain.
+baseurl: "" # Set to "" for a root custom domain
+url: "https://blutoniumstrom.com"
 github_username:  blutoniumstrom
 
 # Build settings
