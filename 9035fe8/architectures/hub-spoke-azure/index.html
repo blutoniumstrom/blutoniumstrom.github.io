@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark"><title>Hub-and-Spoke on Azure — Steffen Klug</title>
+  <meta name="description" content="Personal site of Steffen Klug — Cloud Architect. Blog posts, projects, architectures &amp; diagrams, books &amp; trainings, and a scrollable CV.">
+  <!-- Begin Jekyll SEO tag v2.9.0 -->
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Hub-and-Spoke on Azure" />
+<meta name="author" content="Steffen Klug" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A pragmatic hub-and-spoke reference for Azure with shared services, Azure Firewall, private DNS, and per-spoke connectivity to on-prem via ExpressRoute." />
+<meta name="twitter:description" property="og:description" content="A pragmatic hub-and-spoke reference for Azure with shared services, Azure Firewall, private DNS, and per-spoke connectivity to on-prem via ExpressRoute." />
+<link rel="canonical" href="https://blutoniumstrom.com/9035fe8/architectures/hub-spoke-azure/" />
+<meta property="og:url" content="https://blutoniumstrom.com/9035fe8/architectures/hub-spoke-azure/" />
+<meta property="og:site_name" content="Steffen Klug" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-06-22T11:48:20+02:00" />
+<meta property="article:modified_time" content="2026-06-22T11:48:20+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Hub-and-Spoke on Azure" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Steffen Klug"},"dateModified":"2026-06-22T11:48:20+02:00","datePublished":"2026-06-22T11:48:20+02:00","description":"A pragmatic hub-and-spoke reference for Azure with shared services, Azure Firewall, private DNS, and per-spoke connectivity to on-prem via ExpressRoute.","headline":"Hub-and-Spoke on Azure","mainEntityOfPage":{"@type":"WebPage","@id":"https://blutoniumstrom.com/9035fe8/architectures/hub-spoke-azure/"},"url":"https://blutoniumstrom.com/9035fe8/architectures/hub-spoke-azure/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/9035fe8/assets/css/main.css">
+  <link rel="alternate" type="application/atom+xml" title="Steffen Klug" href="/9035fe8/feed.xml">
+  <link rel="icon" href="/9035fe8/assets/favicon.svg" type="image/svg+xml">
+  <script>
+    // Apply theme before paint to avoid flash
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        var t = saved || 'auto';
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.setAttribute('data-resolved', t === 'auto' ? sys : t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/9035fe8/" aria-label="Steffen Klug — home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 20a6 6 0 0 1 1.5-11.8 8 8 0 0 1 15.4 2.3A5 5 0 0 1 24 20H6Z"/>
+        </svg>
+      </span>
+      <span class="brand-name">Steffen Klug</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+        <span class="sr-only">Menu</span>
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        
+          
+          
+          <li><a href="/9035fe8/blog/">Blog</a></li>
+        
+          
+          
+          <li><a href="/9035fe8/projects/">Projects</a></li>
+        
+          
+          
+          <li><a href="/9035fe8/architectures/" aria-current="page">Architectures</a></li>
+        
+          
+          
+          <li><a href="/9035fe8/books/">Books &amp; Trainings</a></li>
+        
+          
+          
+          <li><a href="/9035fe8/cv/">CV</a></li>
+        
+        <li>
+          <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+            <svg class="i-sun"  viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main id="main" class="site-main">
+    
+
+<article class="page container narrow">
+  <header class="page-header">
+    <p class="eyebrow"><a href="/9035fe8/architectures/">Architectures &amp; Diagrams</a> · 2025</p>
+    <h1>Hub-and-Spoke on Azure</h1>
+    <p class="lede">A reusable network topology for enterprise landing zones.</p>
+    
+      <ul class="tags"><li>#networking</li><li>#landing-zone</li><li>#security</li></ul>
+    
+    
+  </header>
+  
+  <div class="prose">
+    <p>A pragmatic hub-and-spoke reference for Azure with shared services, Azure Firewall,
+private DNS, and per-spoke connectivity to on-prem via ExpressRoute.</p>
+
+<p>Use it as a starting point and trim what you don’t need.</p>
+
+  </div>
+  <p class="back"><a href="/9035fe8/architectures/">← Back to Architectures &amp; Diagrams</a></p>
+</article>
+
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted">© 2026 Steffen Klug. Built with Jekyll on GitHub Pages.</p>
+    <nav class="footer-links" aria-label="Legal">
+      <ul class="legal-nav">
+        <li><a href="/9035fe8/impressum/">Impressum</a></li>
+        <li><a href="/9035fe8/datenschutz/">Datenschutz</a></li>
+      </ul>
+    </nav>
+    <ul class="social">
+      <li><a href="https://github.com/stklug84" rel="me noopener">GitHub</a></li>
+      <li><a href="" rel="me noopener">LinkedIn</a></li>
+      <li><a href="/9035fe8/feed.xml">RSS</a></li>
+    </ul>
+  </div>
+</footer>
+
+  <script src="/9035fe8/assets/js/main.js" defer></script>
+</body>
+</html>
