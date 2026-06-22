@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://blutoniumstrom.com/a3fd18f/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blutoniumstrom.com/a3fd18f/" rel="alternate" type="text/html" /><updated>2026-06-22T12:58:54+02:00</updated><id>https://blutoniumstrom.com/a3fd18f/feed.xml</id><title type="html">Steffen Klug</title><subtitle>Personal site of Steffen Klug — Cloud Architect. Blog posts, projects, architectures &amp; diagrams, books &amp; trainings, and a scrollable CV.</subtitle><author><name>Steffen Klug</name></author><entry><title type="html">Welcome — and what this site is for</title><link href="https://blutoniumstrom.com/a3fd18f/blog/2026/05/01/welcome/" rel="alternate" type="text/html" title="Welcome — and what this site is for" /><published>2026-05-01T00:00:00+02:00</published><updated>2026-05-01T00:00:00+02:00</updated><id>https://blutoniumstrom.com/a3fd18f/blog/2026/05/01/welcome</id><content type="html" xml:base="https://blutoniumstrom.com/a3fd18f/blog/2026/05/01/welcome/"><![CDATA[<p>This is a small home for things I write, build, and teach as a cloud architect.</p>
+
+<p>You’ll find:</p>
+
+<ul>
+  <li><strong>Blog posts</strong> — short, opinionated notes from real projects.</li>
+  <li><strong>Projects</strong> — selected work I’m proud of (or learned the most from).</li>
+  <li><strong>Architectures &amp; Diagrams</strong> — reusable references for cloud and platform design.</li>
+  <li><strong>Books &amp; Trainings</strong> — what I read and recommend.</li>
+  <li><strong>CV</strong> — a scrollable timeline of my career.</li>
+</ul>
+
+<p>The goal is simple: write things down so they’re easier to share — and
+easier to revisit later.</p>]]></content><author><name>Steffen Klug</name></author><category term="meta" /><category term="cloud" /><summary type="html"><![CDATA[This is a small home for things I write, build, and teach as a cloud architect.]]></summary></entry><entry><title type="html">Azure landing zones, without the dogma</title><link href="https://blutoniumstrom.com/a3fd18f/blog/2026/04/15/azure-landing-zones/" rel="alternate" type="text/html" title="Azure landing zones, without the dogma" /><published>2026-04-15T00:00:00+02:00</published><updated>2026-04-15T00:00:00+02:00</updated><id>https://blutoniumstrom.com/a3fd18f/blog/2026/04/15/azure-landing-zones</id><content type="html" xml:base="https://blutoniumstrom.com/a3fd18f/blog/2026/04/15/azure-landing-zones/"><![CDATA[<p>Landing zones are great — until they become a checklist no one understands.
+This is a short take on which guardrails are worth enforcing, which ones to
+treat as defaults, and which ones to leave entirely to the teams using the
+platform.</p>
+
+<blockquote>
+  <p>“Make the right thing easy and the wrong thing visible.”</p>
+</blockquote>
+
+<p>More to come.</p>]]></content><author><name>Steffen Klug</name></author><category term="azure" /><category term="platform" /><category term="landing-zones" /><summary type="html"><![CDATA[Landing zones are great — until they become a checklist no one understands. This is a short take on which guardrails are worth enforcing, which ones to treat as defaults, and which ones to leave entirely to the teams using the platform.]]></summary></entry></feed>
